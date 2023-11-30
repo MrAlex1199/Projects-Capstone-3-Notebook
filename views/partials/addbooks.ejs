@@ -1,0 +1,109 @@
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter&family=Irish+Grover&family=Love+Ya+Like+A+Sister&family=Nunito&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter&family=Irish+Grover&family=Love+Ya+Like+A+Sister&family=Nunito&family=Rubik&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.10.2/css/all.css" />
+    <link rel="stylesheet" href="styles/main.css" />
+    <title>NBook</title>
+</head>
+
+
+<div class="top-box">
+    <a class="addbooks-page" href="/">Book Note Reviewer Library</a>
+    <nav id="home-menu">
+        <ul class="nav__links">
+            <li>
+                <a href="/">Home</a>
+                <a href="/about">About</a>
+                <a href="/contact">Contact</a>
+            </li>
+        </ul>
+    </nav>
+</div>
+
+<main id="Main-section">
+    <div id="Mid-BOX-section">
+        <div id="midbox">
+            <div class="G1">
+                <form class="" action="/Search" method="POST">
+                    <input id="Review-add" class="Search-books-bar" type="text" name="BOOK-Search-ISBN" placeholder="SEARCH BOOK BY ISBN CODE">
+                    <input id="Review-add-btn" action="/Search" method="POST" class="Search-books" type="submit" value="SEARCH">
+                </form>
+            </div>
+            <div class="G2">
+                <form class="C2" action="/add-note" method="POST">
+                    <textarea id="Review-holder" style="width: 450px; height: 500px; font-family: Rubik; font-size: large; " class="review-book-text" type="text" name="Review-text-in" placeholder=""></textarea>
+                    <div class="rating">
+                        <label>
+                            <input type="radio" name="stars" value="1" />
+                            <span class="fa fa-star icon"></span>
+                        </label>
+                        <label>
+                            <input type="radio" name="stars" value="2" />
+                            <span class="fa fa-star icon"></span>
+                            <span class="fa fa-star icon"></span>
+                        </label>
+                        <label>
+                            <input type="radio" name="stars" value="3" />
+                            <span class="fa fa-star icon"></span>
+                            <span class="fa fa-star icon"></span>
+                            <span class="fa fa-star icon"></span>   
+                        </label>
+                        <label>
+                            <input type="radio" name="stars" value="4" />
+                            <span class="fa fa-star icon"></span>
+                            <span class="fa fa-star icon"></span>
+                            <span class="fa fa-star icon"></span>
+                            <span class="fa fa-star icon"></span>
+                        </label>
+                        <label>
+                            <input type="radio" name="stars" value="5" />
+                            <span class="fa fa-star icon"></span>
+                            <span class="fa fa-star icon"></span>
+                            <span class="fa fa-star icon"></span>
+                            <span class="fa fa-star icon"></span>
+                            <span class="fa fa-star icon"></span>
+                        </label>
+                    </div>
+                    <input id="add-books" action="/add-note" method="POST" class="b-add-review" type="submit" value="ADD Review">
+                </form>
+            </div>
+            <div class="G3">
+                <% if (locals.bookData) { %>
+                        <div class="preview-bookcover-name">
+                                <h3 class="Add-book-name-h3"><%= bookData.title %></h3>
+                            <div class="preview-bookcover">
+                             <img class="photo-in-addbook" src=<%= bookData.bookcover %> alt="book"/></img>
+                            </div>
+                            <div class="preview-bookcover-subtitle">
+                                <h3 class="Add-book-name-h3"><%= bookData.subtitle %></h3>
+                            </div>
+                            <div class="preview-bookcover-publishDates">
+                                <h3 class="Add-book-name-h3">Publish Dates <%= bookData.publishDates %></h3>
+                            </div>
+                        </div>
+                <% } else { %>
+                    <div class="preview-bookcover-name">
+                        <h3 class="Add-book-name-h3">Book Name</h3>
+                        <div class="preview-bookcover">
+
+                        </div>
+                        <div class="preview-bookcover-subtitle">
+                            <h3 class="Add-book-name-h3">Book Subtitle</h3>
+                        </div>
+                        <div class="preview-bookcover-publishDates">
+                            <h3 class="Add-book-name-h3">Publish Dates</h3>
+                        </div>
+                    </div>
+                <% } %>
+            </div>
+        </div>
+    </div>
+</main>
+
+<%- include('footer.ejs'); -%>
